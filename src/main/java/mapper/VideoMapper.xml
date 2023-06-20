@@ -5,7 +5,7 @@
 
     <select id="videoList" resultType="Video">
 
-
+    select * from video
 
     </select>
 </mapper>
