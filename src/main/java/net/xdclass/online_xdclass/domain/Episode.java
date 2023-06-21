@@ -1,4 +1,4 @@
-package domain;
+package net.xdclass.online_xdclass.domain;
 
 import java.util.Date;
 

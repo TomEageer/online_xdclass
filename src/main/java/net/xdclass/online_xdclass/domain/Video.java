@@ -1,4 +1,4 @@
-package domain;
+package net.xdclass.online_xdclass.domain;
 
 import java.util.Date;
 
@@ -28,18 +28,6 @@ public class Video {
 
     private double point;
 
-    @Override
-    public String toString() {
-        return "Video{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", summary='" + summary + '\'' +
-                ", coverImg='" + coverImg + '\'' +
-                ", Price=" + Price +
-                ", createTime=" + createTime +
-                ", point=" + point +
-                '}';
-    }
 
     public Integer getId() {
         return id;
@@ -95,5 +83,19 @@ public class Video {
 
     public void setPoint(double point) {
         this.point = point;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", summary='" + summary + '\'' +
+                ", coverImg='" + coverImg + '\'' +
+                ", Price=" + Price +
+                ", createTime=" + createTime +
+                ", point=" + point +
+                '}';
     }
 }
