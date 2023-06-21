@@ -1,6 +1,7 @@
 package net.xdclass.online_xdclass.service.impl;
 
 import net.xdclass.online_xdclass.domain.Video;
+import net.xdclass.online_xdclass.domain.VideoBanner;
 import net.xdclass.online_xdclass.mapper.VideoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,10 @@ public class VideoServiceImpl implements VideoService {
     @Override
     public List<Video> listVideo() {
         return videoMapper.listVideo();
+    }
+
+    @Override
+    public List<VideoBanner> listBanner() {
+        return videoMapper.listVideoBanner();
     }
 }
