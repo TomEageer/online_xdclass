@@ -20,7 +20,7 @@ public class Episode {
 
     private Integer num;
 
-    private Integer orderd;
+    private Integer ordered;
 
     private String playUrl;
 
@@ -29,21 +29,6 @@ public class Episode {
     private Integer videoId;
 
     private Date createTime;
-
-
-    @Override
-    public String toString() {
-        return "Episode{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", num=" + num +
-                ", orderd=" + orderd +
-                ", playUrl='" + playUrl + '\'' +
-                ", free=" + free +
-                ", videoId=" + videoId +
-                ", createTime=" + createTime +
-                '}';
-    }
 
     public Integer getId() {
         return id;
@@ -69,12 +54,12 @@ public class Episode {
         this.num = num;
     }
 
-    public Integer getOrderd() {
-        return orderd;
+    public Integer getOrdered() {
+        return ordered;
     }
 
-    public void setOrderd(Integer orderd) {
-        this.orderd = orderd;
+    public void setOrdered(Integer ordered) {
+        this.ordered = ordered;
     }
 
     public String getPlayUrl() {
@@ -107,5 +92,19 @@ public class Episode {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Episode{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", num=" + num +
+                ", ordered=" + ordered +
+                ", playUrl='" + playUrl + '\'' +
+                ", free=" + free +
+                ", videoId=" + videoId +
+                ", createTime=" + createTime +
+                '}';
     }
 }

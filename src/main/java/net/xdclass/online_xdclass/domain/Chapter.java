@@ -1,6 +1,7 @@
 package net.xdclass.online_xdclass.domain;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -20,6 +21,16 @@ public class Chapter {
 
     private Date createTime;
 
+
+    private List<Episode> episodeList;
+
+    public List<Episode> getEpisodeList() {
+        return episodeList;
+    }
+
+    public void setEpisodeList(List<Episode> episodeList) {
+        this.episodeList = episodeList;
+    }
 
     @Override
     public String toString() {

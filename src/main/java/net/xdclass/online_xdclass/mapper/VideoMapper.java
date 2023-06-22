@@ -18,4 +18,11 @@ public interface VideoMapper {
      * @return
      */
     List<VideoBanner> listVideoBanner();
+
+    /**
+     * 查询视频详情
+     * @param videoId
+     * @return
+     */
+    Video findDetailById(int videoId);
 }
