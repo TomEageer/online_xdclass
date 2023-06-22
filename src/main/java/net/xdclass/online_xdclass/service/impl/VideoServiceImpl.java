@@ -24,4 +24,12 @@ public class VideoServiceImpl implements VideoService {
     public List<VideoBanner> listBanner() {
         return videoMapper.listVideoBanner();
     }
+
+    @Override
+    public Video findDetailById(int videoId) {
+        //TODO 需要使用mybatis关联复杂查询
+
+        return null;
+
+    }
 }

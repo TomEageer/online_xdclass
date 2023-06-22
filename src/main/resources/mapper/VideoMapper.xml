@@ -10,7 +10,7 @@
 
     <select id="listVideoBanner" resultType="VideoBanner">
 
-        select  * from video_banner
+        select  * from video_banner order by weight asc
 
     </select>
 

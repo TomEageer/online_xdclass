@@ -7,6 +7,7 @@ import net.xdclass.online_xdclass.utils.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -39,5 +40,18 @@ public class VideoController {
 
         List<Video> videoList = videoService.listVideo();
         return videoService.listVideo();
+    }
+
+    /**
+     * 查询视频列表详情，包含章、集、信息
+     * @param videoId
+     * @return
+     */
+    @GetMapping("find_detail_by_id")
+    public JsonData findDetailById(@RequestParam(value = "video_id", required = true)int videoId){
+
+        Video video = videoService.findDetailById(videoId);
+
+        return JsonData.buildSuccess(video);
     }
 }
