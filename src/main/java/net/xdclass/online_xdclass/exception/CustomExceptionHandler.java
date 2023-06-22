@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * 异常处理类
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class CustomExceptionHandler {
 
 

@@ -1,5 +1,8 @@
 package net.xdclass.online_xdclass.domain;
 
+import org.omg.CORBA.StringHolder;
+
+import java.io.StringReader;
 import java.util.Date;
 
 /**
@@ -16,25 +19,13 @@ public class User {
 
     private String name;
 
-    private Integer pwd;
+    private String pwd;
 
     private String headImg;
 
-    private Integer phone;
+    private String phone;
 
     private Date createTime;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", pwd=" + pwd +
-                ", headImg='" + headImg + '\'' +
-                ", phone=" + phone +
-                ", createTime=" + createTime +
-                '}';
-    }
 
     public Integer getId() {
         return id;
@@ -52,11 +43,11 @@ public class User {
         this.name = name;
     }
 
-    public Integer getPwd() {
+    public String getPwd() {
         return pwd;
     }
 
-    public void setPwd(Integer pwd) {
+    public void setPwd(String pwd) {
         this.pwd = pwd;
     }
 
@@ -68,11 +59,11 @@ public class User {
         this.headImg = headImg;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -82,5 +73,17 @@ public class User {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", headImg='" + headImg + '\'' +
+                ", phone='" + phone + '\'' +
+                ", createTime=" + createTime +
+                '}';
     }
 }
