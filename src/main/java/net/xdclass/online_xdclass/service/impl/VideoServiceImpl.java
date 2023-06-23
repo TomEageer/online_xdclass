@@ -1,7 +1,7 @@
 package net.xdclass.online_xdclass.service.impl;
 
-import net.xdclass.online_xdclass.domain.Video;
-import net.xdclass.online_xdclass.domain.VideoBanner;
+import net.xdclass.online_xdclass.model.entity.Video;
+import net.xdclass.online_xdclass.model.entity.VideoBanner;
 import net.xdclass.online_xdclass.mapper.VideoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

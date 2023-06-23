@@ -2,8 +2,9 @@ package net.xdclass.online_xdclass.service.impl;
 
 import net.xdclass.online_xdclass.mapper.UserMapper;
 import net.xdclass.online_xdclass.service.UserService;
-import net.xdclass.online_xdclass.domain.User;
+import net.xdclass.online_xdclass.model.entity.User;
 import net.xdclass.online_xdclass.utils.CommonUtils;
+import net.xdclass.online_xdclass.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,23 +23,41 @@ public class UserServiceImpl implements UserService {
     public int save(Map<String, String> userInfo) {
 
         User user = parseToUser(userInfo);
-        if(user != null){
+        if (user != null) {
 
             return userMapper.save(user);
-        }else {
+        } else {
             return -1;
         }
 
     }
 
+    @Override
+    public String findByPhoneAndPwd(String phone, String pwd) {
+        User user = userMapper.findByPhoneAndPwd(phone, CommonUtils.MD5(pwd));
+
+        if (user == null) {
+
+            return null;
+        } else {
+
+            String token = JWTUtils.geneJsonWebToken(user);
+
+            return token;
+        }
+
+    }
+
+
     /**
      * 解析user对象
+     *
      * @param userInfo
      * @return
      */
     private User parseToUser(Map<String, String> userInfo) {
 
-        if(userInfo.containsKey("phone") && userInfo.containsKey("pwd") && userInfo.containsKey("name")){
+        if (userInfo.containsKey("phone") && userInfo.containsKey("pwd") && userInfo.containsKey("name")) {
             User user = new User();
             user.setName(userInfo.get("name"));
             user.setHeadImg(getRandomImg());
@@ -49,7 +68,7 @@ public class UserServiceImpl implements UserService {
             user.setPwd(CommonUtils.MD5(pwd));
 
             return user;
-        }else{
+        } else {
             return null;
         }
 
@@ -58,7 +77,7 @@ public class UserServiceImpl implements UserService {
     /**
      * 放在CDN上的随即头像
      */
-    private static final String [] headImg = {
+    private static final String[] headImg = {
             "https://xd-video-pc-img.oss-cn-beijing.aliyuncs.com/xdclass_pro/default/head_img/12.jpeg",
             "https://xd-video-pc-img.oss-cn-beijing.aliyuncs.com/xdclass_pro/default/head_img/11.jpeg",
             "https://xd-video-pc-img.oss-cn-beijing.aliyuncs.com/xdclass_pro/default/head_img/13.jpeg",
@@ -67,8 +86,7 @@ public class UserServiceImpl implements UserService {
     };
 
 
-
-    private String getRandomImg(){
+    private String getRandomImg() {
         int size = headImg.length;
         Random random = new Random();
         int index = random.nextInt(size);
@@ -76,7 +94,5 @@ public class UserServiceImpl implements UserService {
         return headImg[index];
     }
 
-//    User findByPhone(@Param("phone") String phone){
-//
-//    };
+
 }

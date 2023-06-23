@@ -55,6 +55,7 @@
 			<!--		用于引入Apache Commons Lang 3.9库。这个库提供了许多实用的工具类和方法，用于处理字符串、日期、数组等常见的编程任务。-->
 		</dependency>
 
+<!--		JWT相关 -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>

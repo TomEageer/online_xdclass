@@ -1,6 +1,6 @@
 package net.xdclass.online_xdclass.service;
 
-import net.xdclass.online_xdclass.domain.User;
+import net.xdclass.online_xdclass.model.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;
@@ -13,5 +13,6 @@ public interface UserService {
      */
     int save(Map<String, String> userInfo);
 
-//    User findByPhone(@Param("phone") String phone);
+    String findByPhoneAndPwd(@Param("phone") String phone,@Param("pwd") String pwd);
 }
+

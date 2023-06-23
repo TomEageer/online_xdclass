@@ -17,4 +17,11 @@
     </select>
 
 
+
+<!--    根据手机号和密码查找用户-->
+    <select id="findByPhoneAndPwd" resultType="user">
+
+        select * from user where phone = #{phone} and pwd = #{pwd}
+
+    </select>
 </mapper>

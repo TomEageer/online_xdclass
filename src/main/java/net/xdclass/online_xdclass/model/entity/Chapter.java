@@ -1,4 +1,4 @@
-package net.xdclass.online_xdclass.domain;
+package net.xdclass.online_xdclass.model.entity;
 
 import java.util.Date;
 import java.util.List;

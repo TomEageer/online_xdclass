@@ -1,8 +1,5 @@
-package net.xdclass.online_xdclass.domain;
+package net.xdclass.online_xdclass.model.entity;
 
-import org.omg.CORBA.StringHolder;
-
-import java.io.StringReader;
 import java.util.Date;
 
 /**

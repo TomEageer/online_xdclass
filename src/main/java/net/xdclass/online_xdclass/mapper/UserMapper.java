@@ -1,6 +1,6 @@
 package net.xdclass.online_xdclass.mapper;
 
-import net.xdclass.online_xdclass.domain.User;
+import net.xdclass.online_xdclass.model.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -9,5 +9,7 @@ public interface UserMapper {
 
     User findByPhone(@Param("phone") String phone);
 
+
+    User findByPhoneAndPwd(@Param("phone") String phone, @Param(("pwd")) String pwd);
 
 }
