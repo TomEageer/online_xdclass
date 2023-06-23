@@ -1,5 +1,7 @@
 package net.xdclass.online_xdclass.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 /**
@@ -16,6 +18,7 @@ public class User {
 
     private String name;
 
+    @JsonIgnore
     private String pwd;
 
     private String headImg;

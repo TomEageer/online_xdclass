@@ -14,5 +14,7 @@ public interface UserService {
     int save(Map<String, String> userInfo);
 
     String findByPhoneAndPwd(@Param("phone") String phone,@Param("pwd") String pwd);
+
+    User findByUserId(Integer userId);
 }
 

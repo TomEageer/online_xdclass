@@ -53,7 +53,6 @@ public class LoginInterceptor implements HandlerInterceptor {
                 return true;
             }
 
-            return false;
         }catch (Exception e){
             //login error
 
