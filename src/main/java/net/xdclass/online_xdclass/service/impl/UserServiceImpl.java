@@ -4,6 +4,7 @@ import net.xdclass.online_xdclass.mapper.UserMapper;
 import net.xdclass.online_xdclass.service.UserService;
 import net.xdclass.online_xdclass.domain.User;
 import net.xdclass.online_xdclass.utils.CommonUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -13,14 +14,16 @@ import java.util.Map;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserMapper userMapper;
 
+    @Override
     public int save(Map<String, String> userInfo) {
 
         User user = parseToUser(userInfo);
         if(user != null){
-            return userMapper.save(user);
 
+            return userMapper.save(user);
         }else {
             return -1;
         }
