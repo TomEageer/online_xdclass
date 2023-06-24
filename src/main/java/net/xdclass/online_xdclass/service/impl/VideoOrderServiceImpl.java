@@ -5,6 +5,7 @@ import net.xdclass.online_xdclass.mapper.UserMapper;
 import net.xdclass.online_xdclass.mapper.VideoMapper;
 import net.xdclass.online_xdclass.mapper.VideoOrderMapper;
 import net.xdclass.online_xdclass.model.entity.Episode;
+import net.xdclass.online_xdclass.model.entity.PlayRecord;
 import net.xdclass.online_xdclass.model.entity.Video;
 import net.xdclass.online_xdclass.model.entity.VideoOrder;
 import net.xdclass.online_xdclass.service.VideoOrderService;
@@ -58,6 +59,16 @@ public class VideoOrderServiceImpl implements VideoOrderService {
         int rows = videoOrderMapper.saveOrder(newVideoOrder);
 
         if (rows == 1) {
+
+            Episode episode = episodeMapper.findFirstEpisodeByVideoId(videoId);
+
+            PlayRecord playRecord = new PlayRecord();
+
+            playRecord.setCreateTime(new Date());
+            playRecord.setEpisodeId(episode.getId());
+            playRecord.setCurrentNum(episode.getNum());
+            playRecord.setUserId(userId);
+            playRecord.setVideoId(videoId);
 
 
         }

@@ -12,6 +12,7 @@ package net.xdclass.online_xdclass.model.entity;
 //         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 import javax.xml.crypto.Data;
+import java.util.Date;
 
 public class PlayRecord {
 
@@ -25,7 +26,7 @@ public class PlayRecord {
 
     private Integer episodeId;
 
-    private Data createTime;
+    private Date createTime;
 
     public Integer getId() {
         return id;
@@ -67,14 +68,13 @@ public class PlayRecord {
         this.episodeId = episodeId;
     }
 
-    public Data getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Data createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
-
 
     @Override
     public String toString() {

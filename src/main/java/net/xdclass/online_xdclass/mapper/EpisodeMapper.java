@@ -5,5 +5,5 @@ import org.apache.ibatis.annotations.Param;
 
 public interface EpisodeMapper {
 
-    Episode findFirstEpisodeById(@Param("video_id") int videoId);
+    Episode findFirstEpisodeByVideoId(@Param("video_id") int videoId);
 }
