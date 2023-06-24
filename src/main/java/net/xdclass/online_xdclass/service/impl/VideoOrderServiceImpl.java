@@ -55,6 +55,10 @@ public class VideoOrderServiceImpl implements VideoOrderService {
 
         int rows = videoOrderMapper.saveOrder(newVideoOrder);
 
+
+//        if (row )
+
+
         return rows;
     }
 }
