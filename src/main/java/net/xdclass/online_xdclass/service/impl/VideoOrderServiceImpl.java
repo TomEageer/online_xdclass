@@ -1,8 +1,10 @@
 package net.xdclass.online_xdclass.service.impl;
 
+import net.xdclass.online_xdclass.mapper.EpisodeMapper;
 import net.xdclass.online_xdclass.mapper.UserMapper;
 import net.xdclass.online_xdclass.mapper.VideoMapper;
 import net.xdclass.online_xdclass.mapper.VideoOrderMapper;
+import net.xdclass.online_xdclass.model.entity.Episode;
 import net.xdclass.online_xdclass.model.entity.Video;
 import net.xdclass.online_xdclass.model.entity.VideoOrder;
 import net.xdclass.online_xdclass.service.VideoOrderService;
@@ -18,10 +20,10 @@ public class VideoOrderServiceImpl implements VideoOrderService {
     @Autowired
     private VideoOrderMapper videoOrderMapper;
 
-
     @Autowired
     private VideoMapper videoMapper;
 
+    private EpisodeMapper episodeMapper;
 
     /**
      * 下单操作
@@ -55,8 +57,10 @@ public class VideoOrderServiceImpl implements VideoOrderService {
 
         int rows = videoOrderMapper.saveOrder(newVideoOrder);
 
+        if (rows == 1) {
 
-//        if (row )
+
+        }
 
 
         return rows;
