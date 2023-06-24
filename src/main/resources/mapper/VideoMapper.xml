@@ -9,6 +9,14 @@
 
     </select>
 
+
+    <select id="findById" resultType="VideoBanner">
+
+        select * from video where id={video_id}
+
+    </select>
+
+
     <select id="listVideoBanner" resultType="VideoBanner">
 
         select *
