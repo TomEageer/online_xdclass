@@ -3,9 +3,10 @@
 <mapper namespace="net.xdclass.online_xdclass.mapper.PlayRecordMapper">
 
 
-    <insert id="">
+    <insert id="" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
 
-
+        INSERT INTO `play_record` (`user_id`, `video_id`, `current_num`, `episode_id`, `create_time`)
+        VALUES (#{userId}, #{videoId}, #{currentNum}, #{episodeId}, #{createTime});
 
     </insert>
 

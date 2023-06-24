@@ -1,9 +1,6 @@
 package net.xdclass.online_xdclass.service.impl;
 
-import net.xdclass.online_xdclass.mapper.EpisodeMapper;
-import net.xdclass.online_xdclass.mapper.UserMapper;
-import net.xdclass.online_xdclass.mapper.VideoMapper;
-import net.xdclass.online_xdclass.mapper.VideoOrderMapper;
+import net.xdclass.online_xdclass.mapper.*;
 import net.xdclass.online_xdclass.model.entity.Episode;
 import net.xdclass.online_xdclass.model.entity.PlayRecord;
 import net.xdclass.online_xdclass.model.entity.Video;
@@ -26,6 +23,8 @@ public class VideoOrderServiceImpl implements VideoOrderService {
 
     private EpisodeMapper episodeMapper;
 
+    @Autowired
+    private PlayRecordMapper playRecordMapper;
     /**
      * 下单操作
      * 未来版本：优惠券抵扣、风控用户检测、生成订单基础信息，生成支付信息。
@@ -69,8 +68,7 @@ public class VideoOrderServiceImpl implements VideoOrderService {
             playRecord.setCurrentNum(episode.getNum());
             playRecord.setUserId(userId);
             playRecord.setVideoId(videoId);
-
-
+            playRecordMapper.saveRecord(playRecord);
         }
 
 
