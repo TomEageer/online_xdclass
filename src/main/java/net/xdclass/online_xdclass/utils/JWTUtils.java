@@ -29,10 +29,14 @@ public class JWTUtils {
      */
     private static final String SECRET = "secretTest";
 
-
+    /**
+     * token的前缀
+     */
     private static final String TOKEN_PREFIX = "tokenPrefixTest";
 
-
+    /**
+     * 告诉是谁颁布的
+     */
     private static final String SUBJECT = "subjectTest";
 
     /**
@@ -43,6 +47,7 @@ public class JWTUtils {
      */
     public static String geneJsonWebToken(User user) {
 
+        System.out.println("====JWTUtils的geneJsonWebToken------" + "User：" + user);
         String token = Jwts.builder().setSubject(SUBJECT)
                 .claim("head_img", user.getHeadImg())
                 .claim("id", user.getId())
@@ -53,12 +58,14 @@ public class JWTUtils {
 
         token = TOKEN_PREFIX + token;
 
+        System.out.println("====JWTUtils的geneJsonWebToken生成的token（未加前缀）------" + "token：" + user);
         return token;
     }
 
 
     /**
-     *校验token的方法
+     * 校验token的方法（解密token的数据）
+     *
      * @param token
      * @return
      */
@@ -66,9 +73,10 @@ public class JWTUtils {
 
         try {
             final Claims claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token.replace(TOKEN_PREFIX, "")).getBody();
-
+            System.out.println("JWTUtils的checkJWT" + "：" + claims);
             return claims;
         } catch (Exception e) {
+            System.out.println("JWTUtils的checkJWT方法解密失败");
             return null;
         }
 

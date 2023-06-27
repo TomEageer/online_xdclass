@@ -19,9 +19,11 @@ class OnlineXdclassApplicationTests {
         user.setId(66);
         user.setName("testName");
         user.setHeadImg("testPng");
+
         String token = JWTUtils.geneJsonWebToken(user);
 
-        System.out.println(token);
+
+        System.out.println("测试类中的测试token值："+token);
 
         Claims claims = JWTUtils.checkJWT(token);
 

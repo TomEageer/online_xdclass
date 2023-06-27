@@ -39,6 +39,8 @@ public class UserController {
 
         String token = userService.findByPhoneAndPwd(loginRequest.getPhone(), loginRequest.getPwd());
 
+        System.out.println("UserController的login的token："+token);
+
         return token == null ? JsonData.buildError("登陆失败，账号密码错误") : JsonData.buildSuccess(token);
     }
 
