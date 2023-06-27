@@ -37,9 +37,11 @@ public class UserController {
     @PostMapping("login")
     public JsonData login(@RequestBody LoginRequest loginRequest) {
 
+        System.out.println("===============获取的手机号码" + loginRequest.getPhone() + "获取到的密码：" + loginRequest.getPwd());
+
         String token = userService.findByPhoneAndPwd(loginRequest.getPhone(), loginRequest.getPwd());
 
-        System.out.println("UserController的login的token："+token);
+        System.out.println("UserController的login的token：" + token);
 
         return token == null ? JsonData.buildError("登陆失败，账号密码错误") : JsonData.buildSuccess(token);
     }
@@ -52,11 +54,15 @@ public class UserController {
      */
     @GetMapping("find_by_token")
     public JsonData findUserInfoByToken(HttpServletRequest request) {
+
         Integer userId = (Integer) request.getAttribute("user_id");
 
         if (userId == null) {
-            return JsonData.buildError("查询失败");
+            System.out.println("==============userId为空，可能是拦截器中没有获取到请求体中的userId的参数==============");
+            return JsonData.buildError("查询失败，userId为空");
         }
+
+        System.out.println("==============userId获取到了，userId：" + userId + "==============");
 
         User user = userService.findByUserId(userId);
 

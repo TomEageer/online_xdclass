@@ -35,7 +35,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         try {
             String accessToken = request.getHeader("token");
             if (accessToken == null) {
-                System.out.println("Header为空重新获取token");
+                System.out.println("=================Header为空重新获取token=================");
                 accessToken = request.getParameter("token");
             }
 
@@ -44,15 +44,16 @@ public class LoginInterceptor implements HandlerInterceptor {
                 Claims claims = JWTUtils.checkJWT(accessToken);
                 if (claims == null) {
                     //告诉登陆过期
-                    System.out.println("登陆拦截器检测到claims为空");
+                    System.out.println("=================登陆拦截器检测到claims为空=================");
                     sendJsonMessage(response, JsonData.buildError("22登陆过期， 重新登陆"));
                     return false;
                 }
-
+                System.out.println("=================识别到了token=================");
                 Integer id = (Integer) claims.get("id");
                 String name = (String) claims.get("name");
+                System.out.println("=================获取到了id和name=================" + "id:" + id + "  name:" + name);
 
-                request.setAttribute("user_id", id);
+                request.setAttribute("user_id", id);//把userId返回到了request请求中
                 request.setAttribute("name", name);
 
                 return true;

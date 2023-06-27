@@ -49,9 +49,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUserId(Integer userId) {
-
+        System.out.println("==========UserService的检查错误"+userId);
         User user = userMapper.findByUserId(userId);
         //user.setPwd("");
+        System.out.println("==========UserService的检查错误：User:"+user);
         return user;
     }
 
