@@ -6,6 +6,7 @@ import net.xdclass.online_xdclass.service.UserService;
 import net.xdclass.online_xdclass.utils.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.Map;
@@ -21,9 +22,17 @@ public class UserController {
     @PostMapping("register")
     public JsonData register(@RequestBody Map<String, String> userInfo) {
 
-        int rows = userService.save(userInfo);
-        return rows == 1 ? JsonData.buildSuccess() : JsonData.buildError("注册失败");
+        try {
+            int rows = userService.save(userInfo);
+            if (rows == 1) {
+                return JsonData.buildSuccess("注册成功");
+            }
+            return null;
+        } catch (Exception e) {
+            return JsonData.buildError("名称或手机号码已存在");
+        }
     }
+
 
     @PostMapping("login")
     public JsonData login(@RequestBody LoginRequest loginRequest) {
@@ -35,6 +44,7 @@ public class UserController {
 
     /**
      * 根据用户id查询信息
+     *
      * @param request
      * @return
      */
@@ -42,7 +52,7 @@ public class UserController {
     public JsonData findUserInfoByToken(HttpServletRequest request) {
         Integer userId = (Integer) request.getAttribute("user_id");
 
-        if(userId == null){
+        if (userId == null) {
             return JsonData.buildError("查询失败");
         }
 

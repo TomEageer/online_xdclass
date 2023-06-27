@@ -40,7 +40,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 Claims claims = JWTUtils.checkJWT(accessToken);
                 if (claims == null) {
                     //告诉登陆过期
-                    sendJsonMessage(response, JsonData.buildError("登陆过期， 重新登陆"));
+                    sendJsonMessage(response, JsonData.buildError("22登陆过期， 重新登陆"));
                     return false;
                 }
 
@@ -57,7 +57,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             //login error
 
         }
-        sendJsonMessage(response, JsonData.buildError("登陆过期， 重新登陆"));
+        sendJsonMessage(response, JsonData.buildError("11登陆过期， 重新登陆"));
 
         return false;
     }

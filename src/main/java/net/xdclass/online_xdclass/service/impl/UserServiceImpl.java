@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
         } else {
             return -1;
         }
-
     }
 
     @Override
@@ -77,9 +76,9 @@ public class UserServiceImpl implements UserService {
 
             return user;
         } else {
+            System.out.println("MD5加密失败");
             return null;
         }
-
     }
 
     /**

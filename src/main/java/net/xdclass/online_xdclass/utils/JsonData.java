@@ -9,10 +9,9 @@ public class JsonData {
     private String msg;
 
     /**
-     *
      * @param code 状态码，0成功，1处理中，-1失败
      * @param data 业务数据
-     * @param msg 信息表示
+     * @param msg  信息表示
      */
     public JsonData(Integer code, Object data, String msg) {
         this.code = code;
@@ -22,6 +21,7 @@ public class JsonData {
 
     /**
      * 成功，不返回数据
+     *
      * @return
      */
     public static JsonData buildSuccess() {
@@ -30,6 +30,7 @@ public class JsonData {
 
     /**
      * 成功，返回数据
+     *
      * @param data
      * @return
      */
@@ -39,23 +40,28 @@ public class JsonData {
 
     /**
      * 失败，固定状态码
+     *
      * @param msg
      * @return
      */
-    public static JsonData buildError(String msg){
+    public static JsonData buildError(String msg) {
 
-        return new JsonData(-1, null, null);
+        return new JsonData(-1, null, msg);
     }
 
     /**
      * 失败，自定义错误码和信息
+     *
      * @param code
      * @param msg
      * @return
      */
-    public static JsonData buildError(Integer code, String msg){
+    public static JsonData buildError(Integer code, String msg) {
 
-        return new JsonData(-1, null,  null);
+        if (code == -101) {
+            return new JsonData(-101, "手机号重复", "手机号重复，请重试");
+        }
+        return new JsonData(-1, null, null);
     }
 
     public Integer getCode() {
