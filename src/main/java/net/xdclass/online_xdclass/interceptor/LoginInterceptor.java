@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.security.cert.Extension;
 
+/**
+ * 登陆拦截器
+ */
 public class LoginInterceptor implements HandlerInterceptor {
 
     /**
@@ -32,6 +35,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         try {
             String accessToken = request.getHeader("token");
             if (accessToken == null) {
+                System.out.println("Header为空重新获取token");
                 accessToken = request.getParameter("token");
             }
 
@@ -40,6 +44,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 Claims claims = JWTUtils.checkJWT(accessToken);
                 if (claims == null) {
                     //告诉登陆过期
+                    System.out.println("登陆拦截器检测到claims为空");
                     sendJsonMessage(response, JsonData.buildError("22登陆过期， 重新登陆"));
                     return false;
                 }
@@ -53,7 +58,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 return true;
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             //login error
 
         }
@@ -65,12 +70,13 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     /**
      * 响应json数据给前端，复习一下，没懂干嘛的
+     *
      * @param response
      * @param obj
      */
-    public static void sendJsonMessage(HttpServletResponse response, Object obj){
+    public static void sendJsonMessage(HttpServletResponse response, Object obj) {
 
-        try{
+        try {
 
             ObjectMapper objectMapper = new ObjectMapper();
             response.setContentType("application/json; charset=utf-8");
@@ -80,7 +86,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             writer.close();
 
             response.flushBuffer();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
