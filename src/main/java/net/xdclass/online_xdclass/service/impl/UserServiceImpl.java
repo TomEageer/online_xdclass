@@ -35,12 +35,12 @@ public class UserServiceImpl implements UserService {
     public String findByPhoneAndPwd(String phone, String pwd) {
 
         User user = userMapper.findByPhoneAndPwd(phone, CommonUtils.MD5(pwd));
-        System.out.println("UserServiceImpl的token封装前User：" + user);
+        System.out.println("\n============UserServiceImpl的token封装前User：" + user+"============\n");
         if (user == null) {
             return null;
         } else {
             String token = JWTUtils.geneJsonWebToken(user);//把user的传来的数据封装成一个token
-            System.out.println("封装后的token:" + token);
+            System.out.println("\n============封装后的token:" + token+"==========\n");
 
             return token;
         }

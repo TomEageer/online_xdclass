@@ -16,7 +16,6 @@ import java.util.Map;
 public class UserController {
 
 
-
     @Autowired
     private UserService userService;
 
@@ -39,14 +38,14 @@ public class UserController {
     @PostMapping("login")
     public JsonData login(@RequestBody LoginRequest loginRequest) {
 
-        System.out.println("/n==============================/api/v1/pri/user/login===========================================/n");
-        System.out.println("/n===============获取的手机号码" + loginRequest.getPhone() + "获取到的密码：" + loginRequest.getPwd() + "/n");
+        System.out.println("\n==============================/api/v1/pri/user/login===========================================\n");
+        System.out.println("\n===============获取的手机号码" + loginRequest.getPhone() + "获取到的密码：" + loginRequest.getPwd() + "\n");
 
         String token = userService.findByPhoneAndPwd(loginRequest.getPhone(), loginRequest.getPwd());
 
-        System.out.println("UserController的login的token：" + token);
+        System.out.println("\n===========UserController的login的token：" + token + "==========\n");
 
-        return token == null ? JsonData.buildError("登陆失败，x账号密码错误") : JsonData.buildSuccess(token);
+        return token == null ? JsonData.buildError("登陆失败，账号密码错误") : JsonData.buildSuccess(token);
     }
 
     /**

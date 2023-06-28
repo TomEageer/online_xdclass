@@ -6,13 +6,15 @@ import net.xdclass.online_xdclass.model.request.VideoOrderRequest;
 import net.xdclass.online_xdclass.service.VideoOrderService;
 import net.xdclass.online_xdclass.utils.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpRequest;
+import org.springframework.web.HttpRequestHandler;
+import org.springframework.web.bind.annotation.*;
+import net.xdclass.online_xdclass.model.request.VideoOrderRequest;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/pri/order")
@@ -39,4 +41,19 @@ public class VideoOrderController {
 
     }
 
+    /**
+     * 订单列表
+     * @param request
+     * @return
+     */
+    @GetMapping("list")
+    public JsonData orderList(HttpServletRequest request){
+
+        Integer userId = (Integer) request.getAttribute("user_id");
+
+        List<VideoOrder> videoOrderList = videoOrderService.listOrderByUserId(userId);
+
+
+        return JsonData.buildSuccess(videoOrderList);
+    }
 }
