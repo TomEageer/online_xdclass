@@ -1,5 +1,6 @@
 package net.xdclass.online_xdclass.service.impl;
 
+import net.xdclass.online_xdclass.exception.XDException;
 import net.xdclass.online_xdclass.mapper.*;
 import net.xdclass.online_xdclass.model.entity.Episode;
 import net.xdclass.online_xdclass.model.entity.PlayRecord;
@@ -69,6 +70,9 @@ public class VideoOrderServiceImpl implements VideoOrderService {
 
             Episode episode = episodeMapper.findFirstEpisodeByVideoId(videoId);
 
+            if(episode == null){
+                throw new XDException(-201, "数据库有问题，episode为空没有被检测到");
+            }
             PlayRecord playRecord = new PlayRecord();
 
             playRecord.setCreateTime(new Date());

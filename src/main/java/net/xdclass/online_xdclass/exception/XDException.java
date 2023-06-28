@@ -9,7 +9,7 @@ public class XDException extends RuntimeException {
 
     private String msg;
 
-    private XDException(Integer code, String msg){
+    public XDException(Integer code, String msg){
 
         this.code = code;
         this.msg = msg;
