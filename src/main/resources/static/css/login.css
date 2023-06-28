@@ -1,0 +1,64 @@
+/* style.css */
+
+body {
+    font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* 解决宽度溢出问题 */
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.message {
+    text-align: center;
+    color: red;
+    margin-top: 10px;
+}
+
+.login-link,
+.register-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* 调整输入框对齐 */
+.container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

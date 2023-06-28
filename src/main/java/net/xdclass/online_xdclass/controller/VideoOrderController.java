@@ -28,11 +28,13 @@ public class VideoOrderController {
      */
     @RequestMapping("save")
     public JsonData saveOrder(@RequestBody VideoOrderRequest videoOrderRequest, HttpServletRequest request) {
-
+        System.out.println("\n============进入了saveOrder===========\n");
         Integer userId = (Integer) request.getAttribute("user_id");
+        System.out.println("\n===============userId：" + userId + "================\n");
 
         int rows = videoOrderService.save(userId, videoOrderRequest.getVideoId());
 
+        System.out.println("\n===========rows的值：" + rows + "===========\n");
         return rows == 0 ? JsonData.buildError("下单失败") : JsonData.buildSuccess();
 
     }

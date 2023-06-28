@@ -49,10 +49,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUserId(Integer userId) {
-        System.out.println("==========UserService的检查错误"+userId);
+        System.out.println("\n==========UserService的检查" + userId + "\n");
         User user = userMapper.findByUserId(userId);
+
         //user.setPwd("");
-        System.out.println("==========UserService的检查错误：User:"+user);
+        System.out.println("\n==========UserService的检查：User:" + user + "\n");
         return user;
     }
 
@@ -77,7 +78,7 @@ public class UserServiceImpl implements UserService {
 
             return user;
         } else {
-            System.out.println("MD5加密失败");
+            System.out.println("\nMD5加密失败\n");
             return null;
         }
     }

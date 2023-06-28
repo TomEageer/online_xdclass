@@ -31,27 +31,27 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+        System.out.println("进入了登陆拦截器");
         try {
             String accessToken = request.getHeader("token");
             if (accessToken == null) {
-                System.out.println("=================Header为空重新获取token=================");
+                System.out.println("\n=================Header为空重新获取token=================\n");
                 accessToken = request.getParameter("token");
             }
 
             if (StringUtils.isNotBlank(accessToken)) {
 
                 Claims claims = JWTUtils.checkJWT(accessToken);
+                System.out.println("\ntoken检测到了解密后结果：" + claims + "\n");
                 if (claims == null) {
                     //告诉登陆过期
-                    System.out.println("=================登陆拦截器检测到claims为空=================");
+                    System.out.println("\n=================登陆拦截器检测到claims为空=================\n");
                     sendJsonMessage(response, JsonData.buildError("22登陆过期， 重新登陆"));
                     return false;
                 }
-                System.out.println("=================识别到了token=================");
                 Integer id = (Integer) claims.get("id");
                 String name = (String) claims.get("name");
-                System.out.println("=================获取到了id和name=================" + "id:" + id + "  name:" + name);
+                System.out.println("\n=================获取到了id和name=================" + "id:" + id + "  name:" + name + "\n");
 
                 request.setAttribute("user_id", id);//把userId返回到了request请求中
                 request.setAttribute("name", name);

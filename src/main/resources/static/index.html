@@ -2,57 +2,68 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>视频列表</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+    <title>登陆界面</title>
+    <link rel="stylesheet" href="css/login.css">
 
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-    </style>
 </head>
 <body>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Summary</th>
-        <th>Cover Image</th>
-        <th>Create Time</th>
-        <th>Point</th>
-        <th>Price</th>
-    </tr>
-    <tbody id="video-list"></tbody>
-</table>
+<div class="container">
+    <h2>登陆账号</h2>
+    <form id="login-form">
+        <input type="text" id="phone" placeholder="请输入手机号码" required>
+        <input type="password" id="password" placeholder="请输入密码" required>
+        <input type="submit" value="登陆">
+    </form>
+    <div id="message" class="message"></div>
+    <div class="register-link">
+        没有账号吗？ <a href="register.html">注册</a>
+    </div>
+</div>
 
 <script>
-    // 调用API接口获取数据
-    fetch('http://localhost:8081/api/v1/pub/video/list')
-        .then(response => response.json())
-        .then(data => {
-            const videoList = document.getElementById('video-list');
-            data.forEach(video => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${video.id}</td>
-                    <td>${video.title}</td>
-                    <td>${video.summary}</td>
-                    <td><img src="${video.coverImg}" alt="Cover Image" width="100"></td>
-                    <td>${video.createTime}</td>
-                    <td>${video.point}</td>
-                    <td>${video.price}</td>
-                `;
-                videoList.appendChild(row);
-            });
+    // 监听表单提交事件
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // 阻止表单默认提交行为
+
+        // 获取输入的手机号和密码
+        var phone = document.getElementById("phone").value;
+        var password = document.getElementById("password").value;
+
+        // 创建发送给服务器的 JSON 数据
+        var data = {
+            "phone": phone,
+            "pwd": password
+        };
+
+        // 发送 POST 请求到服务器
+        fetch("http://localhost:8081/api/v1/pri/user/login", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
         })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(function(response) {
+                return response.json(); // 解析响应的 JSON 数据
+            })
+            .then(function(data) {
+                // 处理服务器返回的结果
+                if (data.code === 0) {
+                    // 登录成功，跳转到主页或执行其他操作
+                    var token = data.data;
+                    console.log("登录成功！Token：" + token);
+                } else {
+                    // 登录失败，显示错误消息
+                    var messageElement = document.getElementById("message");
+                    messageElement.textContent = "登录失败，账号密码错误";
+                }
+            })
+            .catch(function(error) {
+                // 请求失败，显示错误消息
+                var messageElement = document.getElementById("message");
+                messageElement.textContent = "请求失败：" + error.message;
+            });
+    });
 </script>
 </body>
 </html>

@@ -25,6 +25,7 @@ public class VideoController {
      */
     @GetMapping("list_banner")
     public JsonData indexBanner() {
+        System.out.println("\n==============================api/v1/pub/video/list_banner===========================================\n");
 
         List<VideoBanner> bannerList = videoService.listBanner();
 
@@ -38,6 +39,8 @@ public class VideoController {
     @RequestMapping("list")
     public Object listVideo() {
 
+
+        System.out.println("\n=============================api/v1/pub/video/list==========================================\n");
         List<Video> videoList = videoService.listVideo();
         return videoService.listVideo();
     }
@@ -50,6 +53,7 @@ public class VideoController {
     @GetMapping("find_detail_by_id")
     public JsonData findDetailById(@RequestParam(value = "video_id", required = true)int videoId){
 
+        System.out.println("\n==============================api/v1/pub/video/find_detail_by_id===========================================\n");
         Video video = videoService.findDetailById(videoId);
 
         return JsonData.buildSuccess(video);

@@ -47,7 +47,7 @@ public class JWTUtils {
      */
     public static String geneJsonWebToken(User user) {
 
-        System.out.println("====JWTUtils的geneJsonWebToken------" + "User：" + user);
+        System.out.println("\n=========进入了JWTUtils的geneJsonWebToken------" + "User：" + user+"\n");
         String token = Jwts.builder().setSubject(SUBJECT)
                 .claim("head_img", user.getHeadImg())
                 .claim("id", user.getId())
@@ -70,13 +70,13 @@ public class JWTUtils {
      * @return
      */
     public static Claims checkJWT(String token) {
-
+        System.out.println("\n============进入了token解密===========\n");
         try {
             final Claims claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token.replace(TOKEN_PREFIX, "")).getBody();
-            System.out.println("JWTUtils的checkJWT" + "：" + claims);
+            System.out.println("\n============JWTUtils的checkJWT" + "：" + claims + "============\n");
             return claims;
         } catch (Exception e) {
-            System.out.println("JWTUtils的checkJWT方法解密失败");
+            System.out.println("\n============JWTUtils的checkJWT方法解密失败============\n");
             return null;
         }
 

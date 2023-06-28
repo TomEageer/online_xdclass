@@ -15,6 +15,8 @@ import java.util.Map;
 @RequestMapping("api/v1/pri/user")
 public class UserController {
 
+
+
     @Autowired
     private UserService userService;
 
@@ -37,13 +39,14 @@ public class UserController {
     @PostMapping("login")
     public JsonData login(@RequestBody LoginRequest loginRequest) {
 
-        System.out.println("===============获取的手机号码" + loginRequest.getPhone() + "获取到的密码：" + loginRequest.getPwd());
+        System.out.println("/n==============================/api/v1/pri/user/login===========================================/n");
+        System.out.println("/n===============获取的手机号码" + loginRequest.getPhone() + "获取到的密码：" + loginRequest.getPwd() + "/n");
 
         String token = userService.findByPhoneAndPwd(loginRequest.getPhone(), loginRequest.getPwd());
 
         System.out.println("UserController的login的token：" + token);
 
-        return token == null ? JsonData.buildError("登陆失败，账号密码错误") : JsonData.buildSuccess(token);
+        return token == null ? JsonData.buildError("登陆失败，x账号密码错误") : JsonData.buildSuccess(token);
     }
 
     /**
@@ -55,14 +58,15 @@ public class UserController {
     @GetMapping("find_by_token")
     public JsonData findUserInfoByToken(HttpServletRequest request) {
 
+        System.out.println("\n==============================/api/v1/pri/user/find_by_token===========================================\n");
         Integer userId = (Integer) request.getAttribute("user_id");
 
         if (userId == null) {
-            System.out.println("==============userId为空，可能是拦截器中没有获取到请求体中的userId的参数==============");
+            System.out.println("\n==============userId为空，可能是拦截器中没有获取到请求体中的userId的参数==============\n");
             return JsonData.buildError("查询失败，userId为空");
         }
 
-        System.out.println("==============userId获取到了，userId：" + userId + "==============");
+        System.out.println("\n==============userId获取到了，userId：" + userId + "==============\n");
 
         User user = userService.findByUserId(userId);
 

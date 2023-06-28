@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>注册</title>
+
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/register-success.css">
+</head>
+<body>
+<div class="container">
+  <h2>注册</h2>
+  <form id="register-form">
+    <input type="text" id="name" placeholder="姓名" required>
+    <input type="text" id="phone" placeholder="手机号码" required>
+    <input type="password" id="password" placeholder="密码" required>
+    <input type="submit" value="注册">
+  </form>
+  <div id="message" class="message"></div>
+  <div class="login-link">
+    已经拥有账户了吗？<a href="index.html">前往登陆</a>
+  </div>
+</div>
+
+<div id="register-success" class="register-success">
+  <h3>注册成功！</h3>
+</div>
+
+<script>
+  // 监听表单提交事件
+  document.getElementById("register-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // 阻止表单默认提交行为
+
+    // 获取输入的姓名、手机号和密码
+    var name = document.getElementById("name").value;
+    var phone = document.getElementById("phone").value;
+    var password = document.getElementById("password").value;
+
+    // 创建发送给服务器的 JSON 数据
+    var data = {
+      "name": name,
+      "phone": phone,
+      "pwd": password
+    };
+
+    // 发送 POST 请求到服务器
+    fetch("http://localhost:8081/api/v1/pri/user/register", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+            .then(function(response) {
+              return response.json(); // 解析响应的 JSON 数据
+            })
+            .then(function(data) {
+              // 处理服务器返回的结果
+              if (data.code === 0) {
+                // 注册成功，显示注册成功提示框
+                var registerSuccess = document.getElementById("register-success");
+                registerSuccess.style.display = "block";
+
+                // 延迟一段时间后跳转至 index.html 页面
+                setTimeout(function() {
+                  window.location.href = "index.html";
+                }, 2000);
+              } else {
+                // 注册失败，显示错误消息
+                var messageElement = document.getElementById("message");
+                messageElement.textContent = data.msg;
+              }
+            })
+            .catch(function(error) {
+              // 请求失败，显示错误消息
+              var messageElement = document.getElementById("message");
+              messageElement.textContent = "请求失败：" + error.message;
+            });
+  });
+</script>
+</body>
+</html>
