@@ -9,10 +9,12 @@ import net.xdclass.online_xdclass.model.entity.VideoOrder;
 import net.xdclass.online_xdclass.service.VideoOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.UUID;
 
+@Transactional
 @Service
 public class VideoOrderServiceImpl implements VideoOrderService {
 
@@ -36,6 +38,7 @@ public class VideoOrderServiceImpl implements VideoOrderService {
      * @param videoId
      * @return
      */
+    @Transactional
     @Override
     public int save(int userId, int videoId) {
 //        判断是否已经购买
@@ -64,6 +67,9 @@ public class VideoOrderServiceImpl implements VideoOrderService {
         newVideoOrder.setVideoImg(video.getCoverImg());
         newVideoOrder.setVideoTitle(video.getTitle());
 
+        /**
+         * 以下代码是存储观看视频记录的方法，但前提是上方的的视频id在episode中也存在对应的videoId
+         */
         int rows = videoOrderMapper.saveOrder(newVideoOrder);
         System.out.println("\n=======rows" + rows + " newVideoOrder:" + newVideoOrder + "=========\n");
         if (rows == 1) {
