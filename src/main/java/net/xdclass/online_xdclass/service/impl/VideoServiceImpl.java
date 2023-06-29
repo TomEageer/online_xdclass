@@ -6,6 +6,8 @@ import net.xdclass.online_xdclass.model.entity.Video;
 import net.xdclass.online_xdclass.model.entity.VideoBanner;
 import net.xdclass.online_xdclass.mapper.VideoMapper;
 import net.xdclass.online_xdclass.utils.BaseCache;
+import org.apache.ibatis.cache.Cache;
+import org.apache.ibatis.cache.CacheKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Service;
@@ -30,7 +32,7 @@ public class VideoServiceImpl implements VideoService {
                 return videoList;
             });
 
-            if (object instanceof List){
+            if (object instanceof List) {
                 List<Video> videoList = (List<Video>) object;
                 System.out.println("\n判断obejct是否存在东西了");
                 return videoList;
@@ -67,20 +69,22 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public Video findDetailById(int videoId) {
+        String videoCacheKey = String.format(CacheKeyManager.INDEX_DETAIL, videoId);
 
         try {
-            Object object = baseCache.getTenMinuteCache().get(CacheKeyManager.INDEX_BANNER_KEY, () -> {
+            Object object = baseCache.getOneHourCache().get(videoCacheKey, () -> {
+
                 Video video = videoMapper.findDetailById(videoId);
-                System.out.println("\nvideoId:"+videoId+"\n");
-                System.out.println("\n=============Guava缓存开启===============\n");
+                System.out.println("\n========Guava缓存开启=======\n");
                 return video;
             });
 
             if (object instanceof Video) {
-                System.out.println("判断obejct是否存在东西了");
+
                 Video video = (Video) object;
                 return video;
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();
