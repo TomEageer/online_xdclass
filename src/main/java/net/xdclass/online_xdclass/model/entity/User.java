@@ -1,6 +1,8 @@
 package net.xdclass.online_xdclass.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
@@ -21,10 +23,13 @@ public class User {
     @JsonIgnore
     private String pwd;
 
+    @JsonProperty("head_img")
     private String headImg;
 
     private String phone;
 
+    @JsonProperty("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     public Integer getId() {

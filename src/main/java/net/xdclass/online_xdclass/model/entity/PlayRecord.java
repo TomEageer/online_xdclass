@@ -11,6 +11,9 @@ package net.xdclass.online_xdclass.model.entity;
 //         PRIMARY KEY (`id`)
 //         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.crypto.Data;
 import java.util.Date;
 
@@ -18,14 +21,20 @@ public class PlayRecord {
 
     private Integer id;
 
+    @JsonProperty("user_id")
     private Integer userId;
 
+    @JsonProperty("video_id")
     private Integer videoId;
 
+    @JsonProperty("current_num")
     private Integer currentNum;
 
+    @JsonProperty("episode_id")
     private Integer episodeId;
 
+    @JsonProperty("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     public Integer getId() {
