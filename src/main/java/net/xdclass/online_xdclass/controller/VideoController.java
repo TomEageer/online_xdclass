@@ -3,6 +3,7 @@ package net.xdclass.online_xdclass.controller;
 import net.xdclass.online_xdclass.model.entity.Video;
 import net.xdclass.online_xdclass.model.entity.VideoBanner;
 import net.xdclass.online_xdclass.service.VideoService;
+import net.xdclass.online_xdclass.utils.BaseCache;
 import net.xdclass.online_xdclass.utils.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +20,13 @@ public class VideoController {
     @Autowired
     private VideoService videoService;
 
+    @Autowired
+    private BaseCache baseCache;
+
     /**
      * 轮播图列表
-      * @return
+     *
+     * @return
      */
     @GetMapping("list_banner")
     public JsonData indexBanner() {
@@ -34,6 +39,7 @@ public class VideoController {
 
     /**
      * 视频列表
+     *
      * @return
      */
     @RequestMapping("list")
@@ -47,11 +53,12 @@ public class VideoController {
 
     /**
      * 查询视频列表详情，包含章、集、信息
+     *
      * @param videoId
      * @return
      */
     @GetMapping("find_detail_by_id")
-    public JsonData findDetailById(@RequestParam(value = "video_id", required = true)int videoId){
+    public JsonData findDetailById(@RequestParam(value = "video_id", required = true) int videoId) {
 
         System.out.println("\n==============================api/v1/pub/video/find_detail_by_id===========================================\n");
         Video video = videoService.findDetailById(videoId);
