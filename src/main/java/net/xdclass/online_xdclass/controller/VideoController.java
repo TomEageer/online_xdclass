@@ -48,7 +48,9 @@ public class VideoController {
 
         System.out.println("\n=============================api/v1/pub/video/list==========================================\n");
         List<Video> videoList = videoService.listVideo();
-        return videoService.listVideo();
+
+        return videoList;
+//        return null;
     }
 
     /**

@@ -17,7 +17,7 @@ public class BaseCache {
             //并发数量设置
             .concurrencyLevel(5)
             //缓存过期时间
-            .expireAfterWrite(5, TimeUnit.SECONDS)
+            .expireAfterWrite(600, TimeUnit.SECONDS)
             //统计缓存命中率
             .recordStats()
             .build();

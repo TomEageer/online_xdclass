@@ -56,7 +56,6 @@ public class VideoServiceImpl implements VideoService {
             });
 
             if (object instanceof List) {
-//            if (object != null) { 后边看看这么写会发生什么问题
                 List<VideoBanner> bannerList = (List<VideoBanner>) object;
                 return bannerList;
             }
