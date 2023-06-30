@@ -33,7 +33,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         /**
-         * 拦截全部路径，这个跨域的需要放在最上面
+         * 拦截全部路径，这个跨域的需要放在最上面。
          */
         registry.addInterceptor(corsInterceptor()).addPathPatterns("/**");
 
